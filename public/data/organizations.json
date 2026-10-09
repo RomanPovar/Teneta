@@ -1,0 +1,685 @@
+[
+  {
+    "meta": {
+      "entity_id": "ENT_043",
+      "parser_source": "hh.ru",
+      "hh_employer_id": "2056231",
+      "hh_profile_url": "https://hh.ru/employer/2056231",
+      "last_scraped_at": "2026-10-04T23:55:00Z",
+      "is_demo": false,
+      "provenance": "User-supplied JSON. Company details, vacancies, contacts and analysis have not been independently verified in this demo. Individual recruiter entries were omitted from the public fixture."
+    },
+    "company_profile": {
+      "brand_name": "ООО АВГ Инженерные Системы",
+      "legal_name": "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"АВГ ИНЖЕНЕРНЫЕ СИСТЕМЫ\"",
+      "identifiers": {
+        "inn": "5032264630",
+        "ogrn": "1135032002907",
+        "kpp": "503201001",
+        "okved": "43.22"
+      },
+      "description_raw": "Компания ООО «АВГ Инженерный Сервис» www.avgis.ru была создана в 2013 году для проектирования, монтажа и обслуживания котельных...",
+      "contacts_and_web": {
+        "websites": [
+          "https://avgis.ru"
+        ],
+        "corporate_emails": [
+          "info@avgis.ru",
+          "sales@avgis.ru"
+        ],
+        "phones": [
+          "+7 (495) 255-20-38"
+        ],
+        "social_links": {
+          "telegram": "",
+          "vk": "",
+          "youtube": ""
+        }
+      },
+      "primary_location": {
+        "full_address": "Московская обл., пгт Нахабино, ул. Панфилова, д. 27, пом. 2",
+        "city": "Нахабино",
+        "region": "Московская область",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 10,
+      "confidence_level": 0.95,
+      "classification": "HARD_NEGATIVE_BENCHMARK",
+      "category": "Civilian Municipal Infrastructure (Boiler & HVAC Services)",
+      "is_defense_contractor": false,
+      "chokepoints_detected": [],
+      "analytical_summary": "Класичний контрольний негативний зразок. Підприємство цивільного ЖКГ: обслуговування побутових газових котлів, промислових котелень, вентиляції (ОВ), каналізації та водопостачання (ВК). Повна відсутність маркерів ГОЗ, БПЛА чи спецзв'язку."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "11223344",
+        "title": "Монтажник систем отопления и котельного оборудования",
+        "url": "https://hh.ru/vacancy/11223344",
+        "published_at": "2026-10-02T10:00:00Z",
+        "salary": {
+          "from": 120000,
+          "to": 160000,
+          "currency": "RUR",
+          "is_net": true
+        },
+        "key_skills": [
+          "Монтаж систем отопления",
+          "Обслуживание котельных",
+          "ВК",
+          "ТМ"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": [
+          "котельные",
+          "водоснабжение",
+          "канализация",
+          "теплые полы"
+        ]
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": [
+        {
+          "relation": "OPERATES_IN_DOMAIN",
+          "target": "Civilian_HVAC_Plumbing"
+        }
+      ]
+    }
+  },
+  {
+    "meta": {
+      "entity_id": "DEMO_001",
+      "parser_source": "fictional_demo",
+      "hh_employer_id": null,
+      "hh_profile_url": null,
+      "last_scraped_at": null,
+      "is_demo": true,
+      "provenance": "Entirely fictional UI test fixture. Not scraped from hh.ru. Company, vacancies and score are synthetic, not real-world findings."
+    },
+    "company_profile": {
+      "brand_name": "Демо Альфа",
+      "legal_name": "ВЫМЫШЛЕННАЯ ОРГАНИЗАЦИЯ — ДЕМО АЛЬФА",
+      "identifiers": {
+        "inn": null,
+        "ogrn": null,
+        "kpp": null,
+        "okved": null
+      },
+      "description_raw": "Вымышленная организация для демонстрации каталога. Не представляет реальное юридическое лицо. Города служат только для проверки фильтрации.",
+      "contacts_and_web": {
+        "websites": [],
+        "corporate_emails": [],
+        "phones": [],
+        "social_links": {}
+      },
+      "primary_location": {
+        "full_address": null,
+        "city": "Казань",
+        "region": "Республика Татарстан",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 82,
+      "confidence_level": null,
+      "classification": "FICTIONAL_UI_FIXTURE",
+      "category": "Industrial automation",
+      "is_defense_contractor": null,
+      "chokepoints_detected": [],
+      "analytical_summary": "The score is an arbitrary test value chosen to exercise low, moderate and high display states. It is not evidence or an assessment of a real organization."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "DEMO_001_JOB_01",
+        "title": "Инженер по автоматизации",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      },
+      {
+        "vacancy_id": "DEMO_001_JOB_02",
+        "title": "Разработчик программного обеспечения",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      },
+      {
+        "vacancy_id": "DEMO_001_JOB_03",
+        "title": "Специалист по качеству",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": []
+    }
+  },
+  {
+    "meta": {
+      "entity_id": "DEMO_002",
+      "parser_source": "fictional_demo",
+      "hh_employer_id": null,
+      "hh_profile_url": null,
+      "last_scraped_at": null,
+      "is_demo": true,
+      "provenance": "Entirely fictional UI test fixture. Not scraped from hh.ru. Company, vacancies and score are synthetic, not real-world findings."
+    },
+    "company_profile": {
+      "brand_name": "Демо Вектор",
+      "legal_name": "ВЫМЫШЛЕННАЯ ОРГАНИЗАЦИЯ — ДЕМО ВЕКТОР",
+      "identifiers": {
+        "inn": null,
+        "ogrn": null,
+        "kpp": null,
+        "okved": null
+      },
+      "description_raw": "Вымышленная организация для демонстрации каталога. Не представляет реальное юридическое лицо. Города служат только для проверки фильтрации.",
+      "contacts_and_web": {
+        "websites": [],
+        "corporate_emails": [],
+        "phones": [],
+        "social_links": {}
+      },
+      "primary_location": {
+        "full_address": null,
+        "city": "Москва",
+        "region": "Москва",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 46,
+      "confidence_level": null,
+      "classification": "FICTIONAL_UI_FIXTURE",
+      "category": "Engineering services",
+      "is_defense_contractor": null,
+      "chokepoints_detected": [],
+      "analytical_summary": "The score is an arbitrary test value chosen to exercise low, moderate and high display states. It is not evidence or an assessment of a real organization."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "DEMO_002_JOB_01",
+        "title": "Инженер-проектировщик",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      },
+      {
+        "vacancy_id": "DEMO_002_JOB_02",
+        "title": "Специалист по документации",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": []
+    }
+  },
+  {
+    "meta": {
+      "entity_id": "DEMO_003",
+      "parser_source": "fictional_demo",
+      "hh_employer_id": null,
+      "hh_profile_url": null,
+      "last_scraped_at": null,
+      "is_demo": true,
+      "provenance": "Entirely fictional UI test fixture. Not scraped from hh.ru. Company, vacancies and score are synthetic, not real-world findings."
+    },
+    "company_profile": {
+      "brand_name": "Демо Контур",
+      "legal_name": "ВЫМЫШЛЕННАЯ ОРГАНИЗАЦИЯ — ДЕМО КОНТУР",
+      "identifiers": {
+        "inn": null,
+        "ogrn": null,
+        "kpp": null,
+        "okved": null
+      },
+      "description_raw": "Вымышленная организация для демонстрации каталога. Не представляет реальное юридическое лицо. Города служат только для проверки фильтрации.",
+      "contacts_and_web": {
+        "websites": [],
+        "corporate_emails": [],
+        "phones": [],
+        "social_links": {}
+      },
+      "primary_location": {
+        "full_address": null,
+        "city": "Санкт-Петербург",
+        "region": "Санкт-Петербург",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 18,
+      "confidence_level": null,
+      "classification": "FICTIONAL_UI_FIXTURE",
+      "category": "Electronics",
+      "is_defense_contractor": null,
+      "chokepoints_detected": [],
+      "analytical_summary": "The score is an arbitrary test value chosen to exercise low, moderate and high display states. It is not evidence or an assessment of a real organization."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "DEMO_003_JOB_01",
+        "title": "Инженер-электроник",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": []
+    }
+  },
+  {
+    "meta": {
+      "entity_id": "DEMO_004",
+      "parser_source": "fictional_demo",
+      "hh_employer_id": null,
+      "hh_profile_url": null,
+      "last_scraped_at": null,
+      "is_demo": true,
+      "provenance": "Entirely fictional UI test fixture. Not scraped from hh.ru. Company, vacancies and score are synthetic, not real-world findings."
+    },
+    "company_profile": {
+      "brand_name": "Демо Меридиан",
+      "legal_name": "ВЫМЫШЛЕННАЯ ОРГАНИЗАЦИЯ — ДЕМО МЕРИДИАН",
+      "identifiers": {
+        "inn": null,
+        "ogrn": null,
+        "kpp": null,
+        "okved": null
+      },
+      "description_raw": "Вымышленная организация для демонстрации каталога. Не представляет реальное юридическое лицо. Города служат только для проверки фильтрации.",
+      "contacts_and_web": {
+        "websites": [],
+        "corporate_emails": [],
+        "phones": [],
+        "social_links": {}
+      },
+      "primary_location": {
+        "full_address": null,
+        "city": "Казань",
+        "region": "Республика Татарстан",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 62,
+      "confidence_level": null,
+      "classification": "FICTIONAL_UI_FIXTURE",
+      "category": "Engineering services",
+      "is_defense_contractor": null,
+      "chokepoints_detected": [],
+      "analytical_summary": "The score is an arbitrary test value chosen to exercise low, moderate and high display states. It is not evidence or an assessment of a real organization."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "DEMO_004_JOB_01",
+        "title": "Инженер по испытаниям",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      },
+      {
+        "vacancy_id": "DEMO_004_JOB_02",
+        "title": "Технический писатель",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": []
+    }
+  },
+  {
+    "meta": {
+      "entity_id": "DEMO_005",
+      "parser_source": "fictional_demo",
+      "hh_employer_id": null,
+      "hh_profile_url": null,
+      "last_scraped_at": null,
+      "is_demo": true,
+      "provenance": "Entirely fictional UI test fixture. Not scraped from hh.ru. Company, vacancies and score are synthetic, not real-world findings."
+    },
+    "company_profile": {
+      "brand_name": "Демо Орбита",
+      "legal_name": "ВЫМЫШЛЕННАЯ ОРГАНИЗАЦИЯ — ДЕМО ОРБИТА",
+      "identifiers": {
+        "inn": null,
+        "ogrn": null,
+        "kpp": null,
+        "okved": null
+      },
+      "description_raw": "Вымышленная организация для демонстрации каталога. Не представляет реальное юридическое лицо. Города служат только для проверки фильтрации.",
+      "contacts_and_web": {
+        "websites": [],
+        "corporate_emails": [],
+        "phones": [],
+        "social_links": {}
+      },
+      "primary_location": {
+        "full_address": null,
+        "city": "Пермь",
+        "region": "Пермский край",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 91,
+      "confidence_level": null,
+      "classification": "FICTIONAL_UI_FIXTURE",
+      "category": "Industrial automation",
+      "is_defense_contractor": null,
+      "chokepoints_detected": [],
+      "analytical_summary": "The score is an arbitrary test value chosen to exercise low, moderate and high display states. It is not evidence or an assessment of a real organization."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "DEMO_005_JOB_01",
+        "title": "Программист систем автоматизации",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      },
+      {
+        "vacancy_id": "DEMO_005_JOB_02",
+        "title": "Инженер по качеству",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      },
+      {
+        "vacancy_id": "DEMO_005_JOB_03",
+        "title": "Тестировщик ПО",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": []
+    }
+  },
+  {
+    "meta": {
+      "entity_id": "DEMO_006",
+      "parser_source": "fictional_demo",
+      "hh_employer_id": null,
+      "hh_profile_url": null,
+      "last_scraped_at": null,
+      "is_demo": true,
+      "provenance": "Entirely fictional UI test fixture. Not scraped from hh.ru. Company, vacancies and score are synthetic, not real-world findings."
+    },
+    "company_profile": {
+      "brand_name": "Демо Профиль",
+      "legal_name": "ВЫМЫШЛЕННАЯ ОРГАНИЗАЦИЯ — ДЕМО ПРОФИЛЬ",
+      "identifiers": {
+        "inn": null,
+        "ogrn": null,
+        "kpp": null,
+        "okved": null
+      },
+      "description_raw": "Вымышленная организация для демонстрации каталога. Не представляет реальное юридическое лицо. Города служат только для проверки фильтрации.",
+      "contacts_and_web": {
+        "websites": [],
+        "corporate_emails": [],
+        "phones": [],
+        "social_links": {}
+      },
+      "primary_location": {
+        "full_address": null,
+        "city": "Екатеринбург",
+        "region": "Свердловская область",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 29,
+      "confidence_level": null,
+      "classification": "FICTIONAL_UI_FIXTURE",
+      "category": "Mechanical engineering",
+      "is_defense_contractor": null,
+      "chokepoints_detected": [],
+      "analytical_summary": "The score is an arbitrary test value chosen to exercise low, moderate and high display states. It is not evidence or an assessment of a real organization."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "DEMO_006_JOB_01",
+        "title": "Инженер-конструктор",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": []
+    }
+  },
+  {
+    "meta": {
+      "entity_id": "DEMO_007",
+      "parser_source": "fictional_demo",
+      "hh_employer_id": null,
+      "hh_profile_url": null,
+      "last_scraped_at": null,
+      "is_demo": true,
+      "provenance": "Entirely fictional UI test fixture. Not scraped from hh.ru. Company, vacancies and score are synthetic, not real-world findings."
+    },
+    "company_profile": {
+      "brand_name": "Демо Спектр",
+      "legal_name": "ВЫМЫШЛЕННАЯ ОРГАНИЗАЦИЯ — ДЕМО СПЕКТР",
+      "identifiers": {
+        "inn": null,
+        "ogrn": null,
+        "kpp": null,
+        "okved": null
+      },
+      "description_raw": "Вымышленная организация для демонстрации каталога. Не представляет реальное юридическое лицо. Города служат только для проверки фильтрации.",
+      "contacts_and_web": {
+        "websites": [],
+        "corporate_emails": [],
+        "phones": [],
+        "social_links": {}
+      },
+      "primary_location": {
+        "full_address": null,
+        "city": "Москва",
+        "region": "Москва",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 74,
+      "confidence_level": null,
+      "classification": "FICTIONAL_UI_FIXTURE",
+      "category": "Electronics",
+      "is_defense_contractor": null,
+      "chokepoints_detected": [],
+      "analytical_summary": "The score is an arbitrary test value chosen to exercise low, moderate and high display states. It is not evidence or an assessment of a real organization."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "DEMO_007_JOB_01",
+        "title": "Разработчик встроенного ПО",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      },
+      {
+        "vacancy_id": "DEMO_007_JOB_02",
+        "title": "Специалист по тестированию",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": []
+    }
+  },
+  {
+    "meta": {
+      "entity_id": "DEMO_008",
+      "parser_source": "fictional_demo",
+      "hh_employer_id": null,
+      "hh_profile_url": null,
+      "last_scraped_at": null,
+      "is_demo": true,
+      "provenance": "Entirely fictional UI test fixture. Not scraped from hh.ru. Company, vacancies and score are synthetic, not real-world findings."
+    },
+    "company_profile": {
+      "brand_name": "Демо Формат",
+      "legal_name": "ВЫМЫШЛЕННАЯ ОРГАНИЗАЦИЯ — ДЕМО ФОРМАТ",
+      "identifiers": {
+        "inn": null,
+        "ogrn": null,
+        "kpp": null,
+        "okved": null
+      },
+      "description_raw": "Вымышленная организация для демонстрации каталога. Не представляет реальное юридическое лицо. Города служат только для проверки фильтрации.",
+      "contacts_and_web": {
+        "websites": [],
+        "corporate_emails": [],
+        "phones": [],
+        "social_links": {}
+      },
+      "primary_location": {
+        "full_address": null,
+        "city": "Нижний Новгород",
+        "region": "Нижегородская область",
+        "geo_cluster": null
+      }
+    },
+    "intelligence_analysis": {
+      "threat_score": 50,
+      "confidence_level": null,
+      "classification": "FICTIONAL_UI_FIXTURE",
+      "category": "Mechanical engineering",
+      "is_defense_contractor": null,
+      "chokepoints_detected": [],
+      "analytical_summary": "The score is an arbitrary test value chosen to exercise low, moderate and high display states. It is not evidence or an assessment of a real organization."
+    },
+    "recruiters": [],
+    "vacancies": [
+      {
+        "vacancy_id": "DEMO_008_JOB_01",
+        "title": "Инженер-технолог",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      },
+      {
+        "vacancy_id": "DEMO_008_JOB_02",
+        "title": "Специалист по документации",
+        "url": null,
+        "published_at": null,
+        "salary": null,
+        "key_skills": [
+          "Демонстрационная вакансия"
+        ],
+        "positive_triggers_found": [],
+        "negative_triggers_found": []
+      }
+    ],
+    "graph_nodes_and_edges": {
+      "node_type": "Company",
+      "connections": []
+    }
+  }
+]
