@@ -1,4 +1,6 @@
 const paths = {
+  network: <><path d="m6 6 12 1-7 12L6 6Zm5 13 8-2M18 7l1 10"/><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="11" cy="19" r="2"/><circle cx="19" cy="17" r="2"/></>,
+  fit: <><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><circle cx="12" cy="12" r="2"/></>,
   grid: <><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></>,
   search: <><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4.5 4.5" /></>,
   filters: <><path d="M4 7h7m4 0h5M4 17h3m4 0h9" /><circle cx="13" cy="7" r="2" /><circle cx="9" cy="17" r="2" /></>,

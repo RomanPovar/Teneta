@@ -1,5 +1,7 @@
+import { GRAPH_MESSAGES } from "./graphMessages.js";
 export const MESSAGES = Object.freeze({
   en: Object.freeze({
+    ...GRAPH_MESSAGES.en,
     "nav.home": "Home",
     "home.title": "TENETA — Open-source organization research",
     "home.heading": "Organization research, grounded in open data.",
@@ -113,6 +115,7 @@ export const MESSAGES = Object.freeze({
     'record.noContacts': 'No corporate contacts available.',
   }),
   uk: Object.freeze({
+    ...GRAPH_MESSAGES.uk,
     "nav.home": "Головна",
     "home.title": "TENETA — Дослідження організацій за відкритими джерелами",
     "home.heading": "Дослідження організацій на основі відкритих даних.",

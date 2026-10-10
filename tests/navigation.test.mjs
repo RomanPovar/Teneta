@@ -25,7 +25,7 @@ test('unknown, malformed, or missing page names safely return home', () => {
   }
 });
 test('hash navigation requires no server-side route rewriting', () => {
-  assert.deepEqual(ROUTES, { home: '#/', catalogue: '#/catalogue' });
+  assert.deepEqual(ROUTES, { home: '#/', catalogue: '#/catalogue', maps: '#/maps' });
   assert.ok(Object.isFrozen(ROUTES));
   for (const href of Object.values(ROUTES)) {
     const url = new URL(href, 'https://example.test/Teneta/');
@@ -66,7 +66,7 @@ test('catalogue state stays mounted and hidden page modals cannot open', () => {
   assert.match(source('src/App.css'), /\[hidden\] \{ display: none !important;/);
 });
 test('the landing page does not require a catalogue fetch on entry', () => {
-  const page = source('src/pages/CataloguePage.jsx');
+  const page = source('src/hooks/useOrganizations.js');
   assert.match(page, /if \(!active \|\| loaded\.current\) return;/);
   assert.match(page, /\[active, attempt\]/);
   assert.match(page, /requestActive = false; controller\.abort\(\)/);
