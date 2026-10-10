@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useLanguage } from "../i18n/useLanguage.js";
 import { loadErrorMessage } from "../i18n/locale.js";
 import CatalogFilters from "../components/CatalogFilters.jsx";
@@ -6,17 +6,13 @@ import OrganizationTable from "../components/OrganizationTable.jsx";
 import RecordDialog from "../components/RecordDialog.jsx";
 import RiskLegend from "../components/RiskLegend.jsx";
 import Icon from "../components/Icon.jsx";
-import { loadOrganizations } from "../services/organizationService.js";
 import {
   DEFAULT_FILTERS, DEFAULT_SORT, exportableRecord, filterOrganizations,
   getFilterOptions, sortOrganizations,
 } from "../lib/catalog.js";
 
-export default function CataloguePage({ active }) {
+export default function CataloguePage({ active, dataset }) {
   const { t } = useLanguage();
-  const loaded = useRef(false);
-  const [loadState, setLoadState] = useState({ status: "loading", organizations: [], error: null });
-  const [attempt, setAttempt] = useState(0);
   const [filters, setFilters] = useState({ ...DEFAULT_FILTERS });
   const [sort, setSort] = useState({ ...DEFAULT_SORT });
   const [page, setPage] = useState(1);
@@ -24,27 +20,7 @@ export default function CataloguePage({ active }) {
   const [selectedId, setSelectedId] = useState(null);
   const [exportNotice, setExportNotice] = useState(null);
 
-  useEffect(() => {
-    if (!active || loaded.current) return;
-    const controller = new AbortController();
-    let requestActive = true;
-    loadOrganizations({ signal: controller.signal })
-      .then((organizations) => {
-        if (requestActive) {
-          loaded.current = true;
-          setLoadState({ status: "ready", organizations, error: null });
-        }
-      })
-      .catch((error) => {
-        if (requestActive && error.name !== "AbortError") {
-          loaded.current = true;
-          setLoadState({ status: "error", organizations: [], error });
-        }
-      });
-    return () => { requestActive = false; controller.abort(); };
-  }, [active, attempt]);
-
-  const { organizations, status, error } = loadState;
+  const { organizations, status, error, retry } = dataset;
   const cities = getFilterOptions(organizations, "city");
   const sectors = getFilterOptions(organizations, "sector");
   const vacancies = organizations.reduce((total, organization) => total + organization.vacancyCount, 0);
@@ -70,11 +46,6 @@ export default function CataloguePage({ active }) {
   function changeSort(key) {
     setSort((current) => ({ key, direction: current.key === key && current.direction === "asc" ? "desc" : "asc" }));
     setPage(1);
-  }
-  function retry() {
-    loaded.current = false;
-    setLoadState({ status: "loading", organizations: [], error: null });
-    setAttempt((value) => value + 1);
   }
   function exportResults() {
     let url;

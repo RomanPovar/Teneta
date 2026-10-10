@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef } from "react";
+import { graphHref } from "../navigation/routes.js";
 import Icon from "./Icon.jsx";
 import RiskBadge from "./RiskBadge.jsx";
 import { formatDate, safeHttpUrl } from "../lib/catalog.js";
@@ -78,7 +79,7 @@ export default function RecordDialog({ organization, onClose }) {
             <a className="source-link" href={url} key={url} target="_blank" rel="noopener noreferrer">{new URL(url).hostname}<Icon name="external" size={12} /></a>
           ))}</div>}
         </section>
-        <div className="dialog-footer"><button className="button" type="button" onClick={onClose}>{t("common.close")}</button></div>
+        <div className="dialog-footer"><a className="button record-graph-link" href={graphHref(organization.id)} onClick={onClose}><Icon name="network" size={17} />{t("maps.openGraph")}</a><button className="button" type="button" onClick={onClose}>{t("common.close")}</button></div>
       </div>
     </dialog>
   );
