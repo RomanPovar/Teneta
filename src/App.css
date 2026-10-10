@@ -3,7 +3,7 @@
 .skip-link:focus { top: 12px; }
 .topbar { background: var(--surface-4); border-bottom: 1px solid var(--line); }
 .topbar-inner { max-width: 1408px; width: calc(100% - 80px); min-height: 88px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-.header-nav { margin-left: auto; }
+.header-nav { margin-left: auto; display: flex; align-self: stretch; align-items: stretch; gap: 26px; }
 .brand { flex-shrink: 0; display: inline-flex; align-items: center; gap: 13px; text-decoration: none; }
 /* Two CSS windows display the supplied symbol and wordmark without altering the PNG. */
 .brand-symbol, .brand-wordmark { position: relative; display: block; overflow: hidden; flex-shrink: 0; }
@@ -14,7 +14,11 @@
 .brand-wordmark { width: 140px; height: 18px; }
 .brand-wordmark img { width: 257.84px; height: auto; left: -58.88px; top: -119.18px; }
 .brand-caption { color: var(--text-secondary); font-size: 11px; letter-spacing: .1px; line-height: 1.2; white-space: nowrap; }
-.nav-item { display: inline-flex; align-items: center; min-height: 88px; padding: 0 3px; border-bottom: 2px solid var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+.nav-item { display: inline-flex; align-items: center; min-height: 88px; padding: 0 3px; border-bottom: 2px solid transparent; text-decoration: none; font-size: 13px; font-weight: 500; }
+.nav-item { color: var(--text-secondary); }
+.nav-item[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
+.nav-item:hover { color: var(--text); }
+[hidden] { display: none !important; }
 .main-container { max-width: 1408px; width: calc(100% - 80px); margin: 0 auto; padding: 42px 0 40px; }
 .main-container:focus { outline: none; }
 .page-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
@@ -127,8 +131,17 @@ h1 { margin: 0; font-size: clamp(27px, 3vw, 38px); line-height: 1.2; letter-spac
 .language-button[aria-pressed="true"] { background: var(--surface-1); color: var(--text); }
 .language-button:hover { background: var(--surface-2); color: var(--text); }
 @media (max-width: 640px) {
-  .header-nav { display: none; }
+  .header-nav { display: flex; }
   .topbar-inner { gap: 10px; }
   .language-switcher { margin-left: auto; }
 }
 @media (pointer: coarse) { .language-button { min-height: 40px; min-width: 40px; } }
+
+/* Shared page navigation remains accessible on compact screens. */
+@media (max-width: 640px) {
+  .topbar-inner { flex-wrap: wrap; padding-top: 12px; gap: 8px 10px; }
+  .brand { order: 0; }
+  .language-switcher { order: 1; }
+  .header-nav { order: 2; flex-basis: 100%; margin-left: 0; gap: 26px; }
+  .header-nav .nav-item { min-height: 42px; padding: 0 4px; font-size: 12px; }
+}
