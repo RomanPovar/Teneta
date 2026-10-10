@@ -1,45 +1,48 @@
-# Validation record
+# Catalogue + language update — validation
 
-## Passed
+## Baseline and scope
 
-**28 data-logic tests**, using Node 22.16.0 and the included `tests/catalog.test.mjs`:
+Based on the two supplied catalogue archives, with the latest
+`teneta-catalogue-update.zip` applied over the initial catalogue files. This update is
+cumulative. No live GitHub repository, branch, setting or deployment was modified.
 
-- Nested JSON normalization, expected fixture counts and missing optional fields.
-- Case-insensitive Cyrillic search, INN search, multiple search terms and Unicode normalization.
-- Intersecting search/city/sector/risk/origin conditions, clear-all and empty results.
-- Ascending and descending organization/city/risk sorting; source data remains unmodified.
-- Score boundaries, explicit risk labels, invalid scores, unassessed-last sorting and confidence/risk separation.
-- Supported response shapes, duplicate-ID rejection and safe source URL protocols.
-- Export omits individual recruiter records without changing the original object.
+## Completed on this update
 
-**26 browser interaction/layout checks**, using Chromium and the locally available React 18.2.0 runtime:
+- **83 / 83** Node tests passed using Node 22.16.0 (`node --test`).
+  Includes the previous 54 data-logic tests, 20 localization checks and 9 service tests.
+- **90 / 90** Chromium interaction/layout assertions passed.
+- **16** JavaScript/JSX modules transpiled using TypeScript 5.8.3 with **0 syntax diagnostics**.
+- Original JSON and logo bytes were checked against the supplied archives and are unchanged.
+- Desktop and mobile screenshots were inspected.
 
-- Initial rendering and computed totals.
-- Search, all dropdowns, filter chips, reset, empty results and disabled export.
-- Sort directions and `aria-sort` feedback.
-- Pagination, last-page controls and reset-on-filter.
-- Record details and dataset help; Escape closes and restores keyboard focus.
-- Ctrl+K search focus.
-- Actual JSON download for the filtered result, preserving the nested schema and excluding recruiters.
-- Desktop layout and mobile layout with the table scrolling inside its own container.
-- No document overflow at 320, 390, 768, 1024 and 1440px.
-- Failed-request and retry behavior.
-- No uncaught JavaScript errors in these checks.
+Browser checks cover EN/УКР switching, translated controls, captions, accessibility labels,
+risk descriptions, dates, active chips, empty and error states, retries, logo loading,
+unchanged source-language data, stable search/filter/sort/page state, all-page JSON exports,
+modal closing/focus restoration, language restoration after app remount, unavailable or
+invalid storage and removal of both the hint and Ctrl/Cmd+K event interception.
+Layout checks include 1440, 768, 640, 390 and 320 pixel viewport widths.
 
-All eight JS/JSX modules also passed a TypeScript JSX syntax-transpilation check. This was compilation for testing, not a migration of the delivered JavaScript to TypeScript.
+## Test environment limits
 
-## Scope and limitations
+Chromium ran the source components in an **offline React/ReactDOM 19.1.1 harness**.
+JSX was transpiled to isolated test modules. The environment blocks browser navigation,
+so the page was mounted with in-memory requests and a Web Storage test double. Restoring
+language was tested by unmounting/remounting the app against that storage, not by a live
+website reload. Exported Blob contents were inspected; OS-level downloads were intercepted.
+No test fixtures, runtime bundles, browser tools or storage shims are shipped with the app.
 
-The browser checks used an **offline test harness with mocked JSON-fetch responses**, because package-network access and local HTTP browser navigation were unavailable. UI source was transpiled into this harness; the delivered files remain normal Vite source files and do not include the harness or its React runtime.
+The npm registry was unavailable (`EAI_AGAIN`). **No successful production Vite build,
+ESLint run or GitHub Pages deployment is claimed.** TypeScript transpilation is a syntax
+check, not a replacement for the project's build/lint pipeline.
 
-A Vite production build and an actual backend connection were **not tested here**. The existing project files, package versions and Vite configuration were not supplied. No package.json, lockfile or Vite configuration is replaced by this archive. No Safari/Firefox or full accessibility audit was performed.
+## Before merging in the actual project
 
-Run these inside your existing project after copying the files:
+    node --test
+    npm run lint
+    npm run build
+    npm run preview
 
-```sh
-node --test tests/catalog.test.mjs
-npm run build
-npm run preview
-```
-
-Quick local smoke check: search `авг`; clear it; select city `Казань` and risk `High`; reset; click the Organization, City and Risk headers twice; choose 5 rows per page and go to the next page; open a record; export the filtered JSON.
+Open the Vite preview including `/Teneta/`. Test a real page reload after selecting УКР.
+The actual application uses browser localStorage with guarded access; when storage is
+blocked, switching works but the choice cannot persist after reload. Keep the project's
+existing dependency versions, Vite base path and deployment configuration.
