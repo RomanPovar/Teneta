@@ -4,7 +4,7 @@ import logoUrl from "../assets/teneta-logo.png";
 export default function Brand() {
   const { t } = useLanguage();
   return (
-    <a className="brand" href="#main-content" aria-label={t("brand.label")}>
+    <a className="brand" href="#/" aria-label={t("brand.label")}>
       <span className="brand-symbol" aria-hidden="true">
         <img src={logoUrl} alt="" draggable="false" />
       </span>

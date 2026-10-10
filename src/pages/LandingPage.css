@@ -1,0 +1,64 @@
+.site-main--home { padding-top: 0; padding-bottom: 0; }
+.landing-page { min-height: calc(100svh - 89px); display: flex; flex-direction: column; }
+.landing-intro { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 36px 0 44px; text-align: center; }
+/* Show the existing logo as supplied; the crop is CSS only, not a modified image. */
+.landing-logo { position: relative; width: clamp(220px, 24vw, 288px); aspect-ratio: 900 / 750; overflow: hidden; flex-shrink: 0; margin: 0 auto 23px; }
+.landing-logo img { position: absolute; width: 170.666667%; height: auto; max-width: none; left: -35.555556%; top: -16%; filter: grayscale(1) invert(1) contrast(1.7); mix-blend-mode: screen; }
+.landing-description { max-width: 730px; margin: 0 auto; }
+.landing-description h1 { max-width: 670px; margin: 0 auto; font-size: clamp(28px, 3vw, 40px); font-weight: 500; line-height: 1.22; letter-spacing: -1.2px; text-wrap: balance; }
+.landing-description > p { margin: 21px auto 0; max-width: 700px; color: var(--text-secondary); font-size: 14px; line-height: 1.85; text-wrap: pretty; }
+.landing-cta { margin-top: 26px; min-height: 46px; padding: 0 20px; gap: 18px; font-size: 12px; }
+.landing-cta svg { transition: transform .18s ease; }
+.landing-cta:hover svg { transform: translateX(3px); }
+.team-section { border-top: 1px solid var(--line-strong); padding: 28px 0 34px; margin-top: auto; }
+.team-heading { display: flex; align-items: baseline; gap: 24px; margin-bottom: 28px; }
+.section-label { margin: 0; color: var(--text-muted); font-size: 10px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; }
+.team-heading h2 { margin: 0; color: var(--text); font-size: 23px; font-weight: 500; letter-spacing: -.5px; }
+.team-members { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; list-style: none; padding: 0; margin: 0; }
+.team-member { min-width: 0; display: flex; align-items: center; gap: 16px; }
+.team-member + .team-member { padding-left: 30px; border-left: 1px solid var(--line); }
+.team-avatar { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; flex-shrink: 0; display: block; border: 1px solid var(--line-strong); }
+.team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.team-avatar--yuliana img { transform: scale(1.2); transform-origin: 50% 34%; }
+.team-avatar--milana img { transform: scale(1.35); transform-origin: 56% 39%; }
+.team-member-copy { min-width: 0; }
+.team-member h3 { margin: 0 0 5px; color: var(--text); font-size: 14px; font-weight: 600; line-height: 1.4; }
+.team-role { margin: 0; color: var(--text-secondary); font-size: 11px; line-height: 1.5; }
+.team-description { margin: 4px 0 0; color: var(--text-muted); font-size: 10px; line-height: 1.6; }
+@media (min-width: 1600px) {
+  .landing-intro { justify-content: center; }
+}
+@media (max-width: 1000px) {
+  .team-members { gap: 20px; }
+  .team-member { gap: 12px; }
+  .team-member + .team-member { padding-left: 18px; }
+  .team-avatar { width: 56px; height: 56px; }
+  .team-member h3 { font-size: 13px; }
+}
+@media (max-width: 760px) {
+  .landing-page { min-height: calc(100svh - 81px); }
+  .landing-intro { padding: 28px 0 35px; }
+  .landing-logo { margin-bottom: 19px; }
+  .landing-description { max-width: 600px; }
+  .landing-description h1 { font-size: 30px; letter-spacing: -.8px; }
+  .landing-description > p { font-size: 13px; line-height: 1.8; margin-top: 18px; }
+  .team-heading { gap: 16px; margin-bottom: 24px; }
+  .team-heading h2 { font-size: 21px; }
+  .team-members { grid-template-columns: 1fr; gap: 0; }
+  .team-member { gap: 16px; padding: 16px 0; }
+  .team-member:first-child { padding-top: 0; }
+  .team-member:last-child { padding-bottom: 0; }
+  .team-member + .team-member { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .team-avatar { width: 56px; height: 56px; }
+  .team-member h3 { font-size: 14px; }
+  .team-description { font-size: 11px; }
+}
+@media (max-width: 640px) {
+  .landing-page { min-height: calc(100svh - 109px); }
+  .site-main--home { padding-top: 0; }
+}
+@media (max-width: 380px) {
+  .landing-description h1 { font-size: 26px; }
+  .team-heading { flex-direction: column; gap: 9px; }
+  .team-heading h2 { font-size: 21px; }
+}

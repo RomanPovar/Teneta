@@ -118,7 +118,7 @@ export function filterOrganizations(organizations, filters = DEFAULT_FILTERS) {
 export function sortOrganizations(organizations, sort = DEFAULT_SORT) {
   const direction = sort.direction === "desc" ? -1 : 1;
   return [...organizations].sort((a, b) => {
-    let comparison = 0;
+    let comparison;
     if (sort.key === "risk") {
       if (a.risk === null && b.risk !== null) return 1;
       if (b.risk === null && a.risk !== null) return -1;

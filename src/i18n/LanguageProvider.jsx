@@ -11,7 +11,6 @@ export default function LanguageProvider({ children }) {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = t('page.title');
     saveLanguage(language);
   }, [language, t]);
 
