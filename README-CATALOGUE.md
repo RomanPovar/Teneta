@@ -1,174 +1,124 @@
-# TENETA — organization catalogue
+# Teneta catalogue
 
-Drop-in source files for your existing **Vite + React + JavaScript** project. No additional runtime packages are required. Keep your existing `package.json`, `src/main.jsx`, Vite configuration and lockfile.
+React + JavaScript catalogue with search, combined filters, sorting, organization details and JSON export.
 
-## Install into your current project
+## Current interface
 
-1. Back up or commit your current work.
-2. Extract this archive. Copy its **contents** into `D:\Projects\Teneta`, beside your existing `package.json`. Merge the `src` and `public` folders; replace the included files when asked. Do not create another `src` inside your existing `src`.
-3. From the project root, run:
+The header uses the supplied Teneta logo and one motto: **Relationships reveal truth**.
+The catalogue contains aggregate totals, a search field, City / Sector / Risk level filters,
+a sortable table, pagination and a compact **Risk scale** reference. Presentation-only
+workspace labels, explanatory banners, record-type controls and promotional footer text
+have been removed.
 
-```sh
-npm run dev
-```
+## Risk display
 
-The archive replaces `src/App.jsx`, `src/App.css`, `src/SearchBar.css` and `src/index.css`. It adds components, a data adapter, a loading service, a JSON fixture and tests. `App.jsx` imports the shared styles itself, so it also works with the standard Vite `main.jsx`.
+The interface reads the final company score from `intelligence_analysis.threat_score`.
+It does not calculate vacancy triggers, model weights, graph coefficients or hard-negative rules.
 
-The old hover-to-reveal search is removed. Search and filters are always visible.
-
-## What works
-
-- Live, case-insensitive search across organization names, legal names, cities, regions, INN/OGRN, IDs, sectors, corporate websites/emails and vacancy titles/skills. Cyrillic is supported. Each space-separated term must match somewhere in the record.
-- City, sector, risk and record-type filters. All active conditions are combined with AND. Dropdown choices are generated from the loaded data.
-- Ascending/descending sorting by organization, city, risk or loaded vacancy count. Names and cities use Russian-aware alphabetical collation. Risk uses low → moderate → high, not alphabetical order.
-- Filter chips, clear-search, clear-all, result counts, empty states and pagination. Changing search, filters or sorting resets the current page.
-- Record details with supplied description, analysis, organizational contacts, vacancies and a source link. Dialog supports Escape and returns focus when closed.
-- Export of ALL matching records, not only the visible page, in the original nested JSON schema. Personal recruiter records are excluded from exports.
-- Loading, failed-request and retry states; keyboard search shortcut Ctrl+K / Command+K.
-- Responsive layout. On a narrow display, only the table scrolls horizontally, not the whole page.
-
-Clearing **only the search text** leaves the selected filters active. Clearing all controls restores the complete list. Filtering and sorting do not remove or modify records in the source JSON.
-
-## Files to understand first
-
-```text
-public/
-  data/organizations.json          ← add or replace organization records here
-src/
-  App.jsx                         ← page state and composition
-  index.css                       ← shared colors, font and reset
-  App.css                         ← page, table, dialog and responsive styles
-  SearchBar.css                   ← search/filter styles and gradient borders
-  components/
-    CatalogFilters.jsx            ← controlled search and dropdowns
-    OrganizationTable.jsx         ← rows, sorting headers and empty state
-    RiskBadge.jsx                 ← low/moderate/high display
-    RecordDialog.jsx              ← record details and dataset help dialog
-    Icon.jsx                      ← small inline SVG UI icons; no icon package
-  lib/catalog.js                  ← JSON adapter, search, sorting and risk policy
-  services/organizationService.js  ← the only data-loading boundary
-```
-
-The data path is:
-
-```text
-JSON file / API
-    ↓ loadOrganizations()
-    ↓ normalizePayload()
-    ↓ filterOrganizations()
-    ↓ sortOrganizations()
-    ↓ current page (slice)
-    ↓ OrganizationTable
-```
-
-State stores inputs: search text, filters, sort and page number. The results are calculated from the original dataset, rather than copied into another state and synchronized with an effect.
-
-## Adding data
-
-Edit `public/data/organizations.json`. The supplied fixture is an array of nine nested organization objects. Keep the array's square brackets and put commas between objects.
-
-Supported response shapes:
-
-```js
-[organizationA, organizationB]
-// or
-{ items: [organizationA, organizationB] }
-// or
-{ organizations: [organizationA, organizationB] }
-// or a single organization object matching your sample.
-```
-
-Each record needs a unique, stable `meta.entity_id` (or a nonempty string INN as fallback) and a name in `company_profile.brand_name` or `legal_name`. Missing optional fields are handled. Duplicate IDs and incompatible payloads produce an error instead of silently rendering incorrect rows.
-
-Your original fields remain nested. The adapter reads, for example:
-
-```js
-raw.company_profile.brand_name
-raw.company_profile.primary_location.city
-raw.intelligence_analysis.threat_score
-raw.vacancies
-```
-
-No flattening of your backend schema is required. The normalizer produces a simpler view model just for the interface.
-
-## Demo data and privacy
-
-The fixture includes **one user-supplied company record plus eight entirely fictional test organizations**. The latter are flagged `meta.is_demo: true`, named “Демо …”, have no real employer URLs or contacts, and are visibly marked “Fictional demo.” They were not scraped from hh.ru. Their jobs and risk scores are arbitrary UI test data, not real findings.
-
-The provided company record is marked unverified. Its original description, supplied analysis, identifiers, corporate contact fields, vacancy and graph are retained. Its individual recruiter entry was deliberately omitted from the public fixture. The interface does not publish personal recruiter details. This is a catalogue page, not a semantic-graph page.
-
-IMPORTANT: `public/data/organizations.json` is a public web asset. Anything loaded into a visitor's browser is accessible to that visitor even when a column is hidden. Before connecting a backend or deploying real data, have the backend remove fields that should not be sent to the client and enforce appropriate access controls. Hiding a field in React is not an access-control mechanism.
-
-## Risk policy: temporary, explicit, editable
-
-The input schema did not define a formal scoring scale or its thresholds. This demo assumes a 0–100 `threat_score` and uses these provisional display cutoffs, defined once in `src/lib/catalog.js`:
-
-```js
-export const RISK_POLICY = {
-  moderateFrom: 34,
-  highFrom: 67,
-  maximum: 100,
-};
-```
-
-- Low: 0 ≤ score < 34.
-- Moderate: 34 ≤ score < 67.
-- High: 67 ≤ score ≤ 100.
-
-For integer scores these are 0–33, 34–66 and 67–100. A provided `intelligence_analysis.risk_level` of `low`, `moderate` or `high` takes precedence. Confidence is never used as a risk score. Missing, nonnumeric, negative or out-of-range scores show “Not assessed”; this is a missing-data state, not a fourth assessed risk category. Unassessed records sort last in both directions.
-
-These labels are NOT an assessment made by the frontend. Agree the authoritative scale and criteria with the backend team before treating them as meaningful.
-
-## Your five-color palette
-
-All five supplied colors are shared variables in `src/index.css`. Higher elevation means a darker surface:
-
-| Level | Color | Use |
+| Score interval | Level | Meaning |
 | --- | --- | --- |
-| 0 | `#4e634c` | Page background |
-| 1 | `#455a43` | Data notice |
-| 2 | `#3e4f3c` | Statistics and table surface |
-| 3 | `#364534` | Filter panel and table headers/footer |
-| 4 | `#2d3c2c` | Top navigation, fields, buttons and modal |
+| 0 <= score < 65 | Low | Civilian activity or general industry |
+| 65 <= score < 85 | Moderate | Dual-use products or technologies |
+| 85 <= score <= 100 | High | Strong defense-related indicators |
 
-Neutral light text supplies contrast. Risk labels also use text and one/two/three bars, so color is not the only signal. Search and filter form borders use a dim layered gradient in `SearchBar.css`.
+For integer scores these intervals are 0–64, 65–84 and 85–100. The team's 0–24 civilian
+band is included in Low; there is no fourth assessed level. Decimal scores are compared
+without rounding (64.9 is Low, 84.9 is Moderate). A valid numeric score is authoritative;
+an older `risk_level` field does not override it. Missing, invalid or out-of-range scores
+are shown as **Not assessed**, a data-availability state rather than another risk tier.
+The frontend does not convert a high score into a claim of independent verification.
 
-## Connect the backend later
+Thresholds and canonical data values live in `src/lib/catalog.js`.
+Interface text and translated risk descriptions live in `src/i18n/messages.js`.
 
-By default, the loader fetches the JSON fixture through Vite's public base path. No environment file is required.
+## Interface language
 
-When an endpoint is available, create `.env.local` beside `package.json`:
+The header has **EN / УКР** controls. The initial language is English unless a saved
+choice exists. Selecting Ukrainian translates navigation, headings, filters, table
+labels, accessible names, risk badges and descriptions, record headings, dates,
+loading/error/empty states and export feedback. The document's `lang` and tab title
+are also updated.
 
-```dotenv
-VITE_ORGANIZATIONS_URL=http://localhost:8000/api/organizations
-```
+The choice is stored as `en` or `uk` under `teneta.ui.language` in localStorage.
+Switching still works for the current session when storage is blocked. An unsupported
+stored value falls back to English. Language changes do not reset search text,
+filters, sorting, pagination or reload the dataset.
 
-Restart `npm run dev`. The label changes from Local JSON to Backend API. Use an HTTPS endpoint with an HTTPS-deployed frontend, and configure the backend's allowed frontend origin (or use a same-origin proxy). The endpoint must return a documented shape above.
+Company names, locations, categories, vacancies and analytical text from JSON remain
+in their source language. JSON exports retain the same data regardless of the selected
+interface language. The requested motto **Relationships reveal truth** remains English.
 
-This is a small-dataset, **client-side** implementation. The loader performs one request and filtering/sorting operate on the returned records. It does not automatically fetch all pages of a paginated backend response. A backend response with only one page means only that page can be searched here. When the dataset grows, agree a server-side query contract (`query`, `city`, `risk`, `sort`, `page`, `pageSize`, `total`) and replace the loading/filtering path accordingly. An environment variable alone does not implement server-side pagination, authentication or filtering.
+The search shortcut and its visual hint have both been removed. The page does not
+intercept Ctrl/Cmd+K; ordinary input, clear-search and Tab navigation remain available.
 
-Never put tokens, passwords or private API keys in `VITE_*` variables; Vite includes those values in the client bundle.
+## Data source
 
-## Checks
+`public/data/organizations.json` is unchanged. Loading still uses:
 
-Run the included dependency-free data tests:
+    `${import.meta.env.BASE_URL}data/organizations.json`
 
-```sh
-node --test tests/catalog.test.mjs
-```
+The existing optional `VITE_ORGANIZATIONS_URL` override is retained. No new backend API,
+query parameters, server pagination or authentication have been introduced.
 
-Then check the production build in your own existing project:
+`normalizePayload()` excludes records with `meta.is_demo === true` before validation,
+statistics, filter choices, table rendering and export. With the currently supplied JSON,
+this leaves one organization. Exclusion does **not** delete these entries from the original
+file: its original bytes remain in `public/` and in the published static data file.
+Do not treat frontend filtering as an access-control mechanism.
 
-```sh
-npm run build
-npm run preview
-```
+The accepted shapes remain a single company record, an array, `{ items: [...] }`,
+or `{ organizations: [...] }`. Each eligible record requires a stable `meta.entity_id`
+(or INN) and a `company_profile.brand_name` (or legal name).
 
-See `CHECKS-CATALOGUE.md` for exactly what was checked and what remains unverified.
+## Search and export
 
-## Relevant documentation
+Search is case-insensitive and supports Cyrillic. Every whitespace-separated query term
+must occur in the searchable organization fields. City, sector and risk combine with the
+query. Clearing the query preserves selected filters; **Clear all** resets all controls.
+Results are derived from loaded data without mutating the source records.
 
-- React: https://react.dev/learn/thinking-in-react
-- Vite environment variables: https://vite.dev/guide/env-and-mode
+**Export JSON** exports every matching organization, not only the current page. It retains
+the nested source schema and provenance metadata. Individual `recruiters` entries remain
+excluded, as before. No risk labels or additional evidence are invented during export.
 
-Suggested commit: `feat(catalogue): add JSON-backed organization search, filters and sorting`
+## Development
+
+Use the existing project dependencies and configuration:
+
+    npm install
+    npm run dev
+
+Check the data logic and production build:
+
+    node --test
+    npm run build
+    npm run preview
+
+Keep `base: "/Teneta/"` in the existing Vite configuration. There are no dependency or
+GitHub Actions changes in this update.
+
+## Files
+
+| File | Responsibility |
+| --- | --- |
+| `src/App.jsx` | Page state, statistics, pagination and export |
+| `src/components/LanguageSwitcher.jsx` | Header language controls |
+| `src/i18n/messages.js` | English and Ukrainian interface strings |
+| `src/i18n/LanguageProvider.jsx` | Language state, persistence and document language |
+| `src/components/Brand.jsx` | Reusable header logo and motto |
+| `src/components/CatalogFilters.jsx` | Search and three filters |
+| `src/components/OrganizationTable.jsx` | Sortable catalogue rows |
+| `src/components/RiskBadge.jsx` | Risk badge and concise tooltip |
+| `src/components/RiskLegend.jsx` | Points / Level / Meaning reference |
+| `src/components/RecordDialog.jsx` | Organization information |
+| `src/lib/catalog.js` | Normalization, exclusion, risk mapping, sorting and export |
+| `src/services/organizationService.js` | Existing data-loading boundary |
+| `src/assets/teneta-logo.png` | Unmodified supplied logo |
+| `tests/catalog.test.mjs` | Data-logic and risk-threshold tests |
+| `tests/i18n.test.mjs` | Translation, persistence and shortcut-removal checks |
+| `tests/organizationService.test.mjs` | Data-loading and localized-error-code tests |
+
+The original logo is displayed through two CSS windows for the symbol and wordmark,
+with a monochrome treatment for the dark header. Its source PNG has not been altered.
+
+See `CHECKS-CATALOGUE.md` for actual validation results and limitations.
