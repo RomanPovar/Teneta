@@ -1,7 +1,6 @@
 import { normalizePayload } from "../lib/catalog.js";
 
-const configuredUrl = import.meta.env?.VITE_ORGANIZATIONS_URL?.trim() || "http://localhost:8080/api/organizations";
-export const ORGANIZATIONS_URL = configuredUrl || `${import.meta.env?.BASE_URL ?? "/"}data/organizations.json`;
+export const ORGANIZATIONS_URL = "http://localhost:8080/api/organizations";
 
 class CatalogueLoadError extends Error {
   constructor(code, status) {
