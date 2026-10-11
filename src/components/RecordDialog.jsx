@@ -55,6 +55,29 @@ export default function RecordDialog({ organization, onClose }) {
             : organization.source || t("common.notSpecified")}</Detail>
         </dl>
         <section className="detail-section"><h3>{t("record.sector")}</h3><p>{organization.sector || t("common.notSpecified")}</p></section>
+        {organization.tags && organization.tags.length > 0 && (
+          <section className="detail-section">
+            <h3>Tags</h3>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "4px" }}>
+              {organization.tags.map((tag, idx) => (
+                <span
+                  key={idx}
+                  style={{
+                    padding: "3px 8px",
+                    borderRadius: "4px",
+                    fontSize: "12px",
+                    fontWeight: "600",
+                    background: tag === "БПЛА" ? "rgba(239, 68, 68, 0.15)" : tag === "ГОЗ" || tag === "ОПК" ? "rgba(245, 158, 11, 0.15)" : "var(--surface-3, #f1f5f9)",
+                    color: tag === "БПЛА" ? "#dc2626" : tag === "ГОЗ" || tag === "ОПК" ? "#d97706" : "var(--text-primary)",
+                    border: "1px solid var(--line)",
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
         {organization.description && <section className="detail-section"><h3>{t("record.overview")}</h3><p>{organization.description}</p></section>}
         {organization.summary && <section className="detail-section"><h3>{t("record.analysis")}</h3><p>{organization.summary}</p></section>}
         <section className="detail-section">

@@ -53,6 +53,26 @@ export default function OrganizationTable({ organizations, sort, onSort, onOpen,
             <td>
               <button type="button" className="organization-name" onClick={() => onOpen(organization.id)}>{organization.name}</button>
               <span className="cell-secondary">{organization.inn ? t("table.inn", { value: organization.inn }) : organization.id}</span>
+              {organization.tags && organization.tags.length > 0 && (
+                <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginTop: "4px" }}>
+                  {organization.tags.slice(0, 3).map((tag, idx) => (
+                    <span key={idx} style={{
+                      fontSize: "10px",
+                      padding: "1px 6px",
+                      background: tag === "БПЛА" ? "rgba(239, 68, 68, 0.15)" : tag === "ГОЗ" || tag === "ОПК" ? "rgba(245, 158, 11, 0.15)" : "var(--surface-3, #f1f5f9)",
+                      color: tag === "БПЛА" ? "#dc2626" : tag === "ГОЗ" || tag === "ОПК" ? "#d97706" : "var(--text-secondary)",
+                      borderRadius: "3px",
+                      fontWeight: "500",
+                      whiteSpace: "nowrap"
+                    }}>
+                      {tag}
+                    </span>
+                  ))}
+                  {organization.tags.length > 3 && (
+                    <span style={{ fontSize: "9px", color: "var(--text-muted)", alignSelf: "center" }}>+{organization.tags.length - 3}</span>
+                  )}
+                </div>
+              )}
             </td>
             <td><span className="city-name">{organization.city || t("common.notSpecified")}</span>
               {organization.region && <span className="cell-secondary">{organization.region}</span>}

@@ -74,6 +74,7 @@ export function normalizeOrganization(raw) {
     description: text(profile.description_raw), summary: text(analysis.analytical_summary),
     emails, phones, websites, contactCount: emails.length + phones.length,
     vacancies, vacancyCount: vacancies.length,
+    tags: strings(raw.tags || analysis.tags),
     risk: risk.level, score: risk.score, riskMeaning: risk.meaning,
     source: text(meta.parser_source), sourceUrl: safeHttpUrl(meta.hh_profile_url),
     lastScrapedAt: Number.isNaN(Date.parse(lastScrapedAt)) ? null : lastScrapedAt,
@@ -82,6 +83,7 @@ export function normalizeOrganization(raw) {
   result.searchText = normalizeText([
     result.name, result.legalName, result.id, result.inn, result.ogrn,
     result.city, result.region, result.sector, result.description,
+    ...result.tags,
     ...websites, ...emails,
     ...vacancies.flatMap((vacancy) => [text(vacancy.title), ...strings(vacancy.key_skills)]),
   ].join(" "));
